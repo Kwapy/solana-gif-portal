@@ -11,4 +11,4 @@ cluster = "localnet"
 wallet = "/Users/danik/.config/solana/id.json"
 
 [scripts]
-test = "yarn run mocha -t 1000000 tests/"
+test = "node tests/solana.js"

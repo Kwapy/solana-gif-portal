@@ -1,13 +1,22 @@
 const anchor = require("@project-serum/anchor");
 
-describe("solana", () => {
-  // Configure the client to use the local cluster.
+const main = async() => {
+  console.log("Starting test...")
   anchor.setProvider(anchor.AnchorProvider.env());
+  const program = anchor.workspace.Solana;
+  const tx = await program.rpc.initialize();
+  console.log("The transaction is: ", tx)
+}
 
-  it("Is initialized!", async () => {
-    // Add your test here.
-    const program = anchor.workspace.Solana;
-    const tx = await program.methods.initialize().rpc();
-    console.log("Your transaction signature", tx);
-  });
-});
+const runMain = async() => {
+  try{
+    await main()
+    process.exit(0)
+  }
+  catch(err){
+    console.error(err)
+    process.exit(1)
+  }
+}
+
+runMain()
